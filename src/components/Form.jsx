@@ -69,7 +69,7 @@ const Form = ({ values, onInputChange, onCheckboxChange, onSubmit, disabled, err
                     onChange={onInputChange}
                 ></textarea>
             </label><br />
-            <button disabled={disabled} onClick={onSubmit}>Submit</button>
+            <button disabled={disabled} onClick={onSubmit} className='submit-button'>Submit</button>
             <p className='submit-message'>{submitMessage}</p>
             <p className='errors'>{errors.name}</p>
         </div>
