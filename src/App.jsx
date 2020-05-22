@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Form from './components/Form';
 import axios from 'axios';
+import formSchema from './validation/formSchema';
+import * as yup from 'yup';
 
 const API_URL = 'https://reqres.in/api/pizza';
 
@@ -15,13 +17,36 @@ const initialFormValues = {
   spinach: false
 }
 
+const initialFormErrors = {
+  name: ''
+}
 
 const App = () => {
 
-  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(true);
+
+  //Perform form validation and allow submission
+  useEffect(() => {
+    formSchema.isValid(formValues)
+      .then(valid => {
+        setDisabled(!valid)
+      })
+  }, [formValues])
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
+
+    yup.reach(formSchema, name)
+      .validate(value)
+      .then(valid => {
+        setFormErrors({ ...formErrors, [name]: '' })
+      })
+      .catch(err => {
+        setFormErrors({ ...formErrors, [name]: err.errors[0] })
+      })
+
     setFormValues({ ...formValues, [name]: value });
   }
 
@@ -38,10 +63,10 @@ const App = () => {
 
   const postOrder = () => {
     axios.post(API_URL, formValues)
-    .then(res => {
-      console.log('POST response: ', res);
-      setFormValues(initialFormValues);
-    })
+      .then(res => {
+        console.log('POST response: ', res);
+        setFormValues(initialFormValues);
+      })
   }
 
   return (
@@ -61,6 +86,7 @@ const App = () => {
               onInputChange={onInputChange}
               onCheckboxChange={onCheckboxChange}
               onSubmit={onSubmit}
+              disabled={disabled}
             />
           </Route>
         </Switch>
