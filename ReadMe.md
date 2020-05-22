@@ -76,7 +76,7 @@ If you complete the MVP, move on to the following stretch goals. As usual, these
 - [ ] Turn form element sections into nested routes
 - [ ] Create a `cart` page with additional form options like: delivery or pickup, the option to add utensils and straws, add a tip, etc.
 - [ ] Test more of the application with Cypress
-- [ ] Add functionality to your order button that it leads to a Congrats! Pizza is on it's way! page **and** returns a database record of the whole order
+- [X] Add functionality to your order button that it leads to a Congrats! Pizza is on it's way! page **and** returns a database record of the whole order
 
 **"Pizza is on its Way" Wireframe:**
 

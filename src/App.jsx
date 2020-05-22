@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Form from './components/Form';
 import axios from 'axios';
 import formSchema from './validation/formSchema';
@@ -52,13 +52,11 @@ const App = () => {
       })
 
     setFormValues({ ...formValues, [name]: value });
-    setOrderInfo({ ...formValues });
   }
 
   const onCheckboxChange = (e) => {
     const { name, checked } = e.target;
     setFormValues({ ...formValues, [name]: checked });
-    setOrderInfo({ ...formValues });
   }
 
   const onSubmit = (e) => {
@@ -75,9 +73,11 @@ const App = () => {
         console.log('POST response: ', res);
         setMadeOrder(true);
         setOrderInfo({ ...res.data });
-        console.log(orderInfo);
         setFormValues(initialFormValues);
         setSubmitMessage('Order sent, your pizza is on its way!');
+      })
+      .catch(err => {
+        console.log(err);
       })
   }
 

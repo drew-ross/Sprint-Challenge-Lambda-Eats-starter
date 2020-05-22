@@ -36,6 +36,8 @@ describe('Navigate to order form, check inputs, check name validation, check sub
             .should('be.checked').uncheck().should('not.be.checked')
         cy.get('input[name="spinach"]').check()
             .should('be.checked').uncheck().should('not.be.checked')
+        cy.get('input[name="mushrooms"]').check()
+        cy.get('input[name="olives"]').check()
     })
 
     it('Can type special instructions', () => {
