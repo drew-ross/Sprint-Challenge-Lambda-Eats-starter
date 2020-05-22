@@ -48,7 +48,7 @@ Your MVP should include, at a minimum, the following components.
 - [X] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
 - [X] A form with a "/pizza" route
 - [X] A name text input field
-- [ ] Validation for name - name must be at least 2 characters
+- [X] Validation for name - name must be at least 2 characters
 - [X] Dropdown form component for pizza size
 - [X] Checklist form component for toppings - at least 4 (hint: name each separately!)
 - [X] Text input form component for special instructions
@@ -58,9 +58,9 @@ Your MVP should include, at a minimum, the following components.
 
 Implement the following tests in Cypress:
 
-- [ ] test that you can add text to the box
-- [ ] test that you can select multiple toppings
-- [ ] test that you can submit the form
+- [X] test that you can add text to the box
+- [X] test that you can select multiple toppings
+- [X] test that you can submit the form
 
 You may use the following wireframe (also in a folder above) as guidance as you design your site but it is not required that you do so.
 

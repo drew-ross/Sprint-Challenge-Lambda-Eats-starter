@@ -4,6 +4,7 @@ import Form from './components/Form';
 import axios from 'axios';
 import formSchema from './validation/formSchema';
 import * as yup from 'yup';
+import OrderInfo from './components/OrderInfo';
 
 const API_URL = 'https://reqres.in/api/pizza';
 
@@ -27,6 +28,8 @@ const App = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [orderInfo, setOrderInfo] = useState({});
+  const [madeOrder, setMadeOrder] = useState(false);
 
   //Perform form validation and allow submission
   useEffect(() => {
@@ -49,11 +52,13 @@ const App = () => {
       })
 
     setFormValues({ ...formValues, [name]: value });
+    setOrderInfo({ ...formValues });
   }
 
   const onCheckboxChange = (e) => {
     const { name, checked } = e.target;
     setFormValues({ ...formValues, [name]: checked });
+    setOrderInfo({ ...formValues });
   }
 
   const onSubmit = (e) => {
@@ -68,10 +73,14 @@ const App = () => {
     axios.post(API_URL, formValues)
       .then(res => {
         console.log('POST response: ', res);
+        setMadeOrder(true);
+        setOrderInfo({ ...res.data });
+        console.log(orderInfo);
         setFormValues(initialFormValues);
         setSubmitMessage('Order sent, your pizza is on its way!');
       })
   }
+
 
   return (
     <div className='App'>
@@ -94,6 +103,7 @@ const App = () => {
               errors={formErrors}
               submitMessage={submitMessage}
             />
+            {madeOrder && <OrderInfo orderInfo={orderInfo} />}
           </Route>
         </Switch>
       </div>
