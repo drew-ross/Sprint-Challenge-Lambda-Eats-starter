@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Form from './components/Form';
+import axios from 'axios';
+
+const API_URL = 'https://reqres.in/api/pizza';
 
 const initialFormValues = {
   name: '',
@@ -27,6 +30,20 @@ const App = () => {
     setFormValues({ ...formValues, [name]: checked });
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log('SUBMIT');
+    postOrder();
+  }
+
+  const postOrder = () => {
+    axios.post(API_URL, formValues)
+    .then(res => {
+      console.log('POST response: ', res);
+      setFormValues(initialFormValues);
+    })
+  }
+
   return (
     <div className='App'>
       <nav>
@@ -43,6 +60,7 @@ const App = () => {
               values={formValues}
               onInputChange={onInputChange}
               onCheckboxChange={onCheckboxChange}
+              onSubmit={onSubmit}
             />
           </Route>
         </Switch>
