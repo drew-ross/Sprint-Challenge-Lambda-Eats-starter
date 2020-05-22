@@ -26,6 +26,7 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   //Perform form validation and allow submission
   useEffect(() => {
@@ -58,6 +59,8 @@ const App = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('SUBMIT');
+    setDisabled(true);
+    setSubmitMessage('Submitting order...');
     postOrder();
   }
 
@@ -66,6 +69,7 @@ const App = () => {
       .then(res => {
         console.log('POST response: ', res);
         setFormValues(initialFormValues);
+        setSubmitMessage('Order sent, your pizza is on its way!');
       })
   }
 
@@ -87,6 +91,8 @@ const App = () => {
               onCheckboxChange={onCheckboxChange}
               onSubmit={onSubmit}
               disabled={disabled}
+              errors={formErrors}
+              submitMessage={submitMessage}
             />
           </Route>
         </Switch>

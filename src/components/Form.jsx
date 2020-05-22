@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 
-const Form = ({ values, onInputChange, onCheckboxChange, onSubmit, disabled }) => {
+const Form = ({ values, onInputChange, onCheckboxChange, onSubmit, disabled, errors, submitMessage }) => {
 
     return (
         <div className="form">
@@ -64,11 +64,14 @@ const Form = ({ values, onInputChange, onCheckboxChange, onSubmit, disabled }) =
                     className='instructions'
                     name='instructions'
                     type='textfield'
+                    maxLength='250'
                     value={values.instructions}
                     onChange={onInputChange}
                 ></textarea>
             </label><br />
             <button disabled={disabled} onClick={onSubmit}>Submit</button>
+            <p className='submit-message'>{submitMessage}</p>
+            <p className='errors'>{errors.name}</p>
         </div>
     )
 };
