@@ -3,13 +3,29 @@ import { useParams, Link, Route, Switch, useRouteMatch } from 'react-router-dom'
 import Form from './components/Form';
 
 const initialFormValues = {
-  
+  name: '',
+  size: 'small',
+  instructions: '',
+  pepperoni: false,
+  olives: false,
+  mushrooms: false,
+  spinach: false
 }
 
 
 const App = () => {
 
-  const [formValues, setFormValues] = useState()
+  const [formValues, setFormValues] = useState(initialFormValues)
+
+  const onInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  }
+
+  const onCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormValues({ ...formValues, [name]: checked });
+  }
 
   return (
     <div className='App'>
@@ -23,7 +39,11 @@ const App = () => {
       <div className="body">
         <Switch>
           <Route path='/pizza'>
-            <Form />
+            <Form
+              values={formValues}
+              onInputChange={onInputChange}
+              onCheckboxChange={onCheckboxChange}
+            />
           </Route>
         </Switch>
       </div>
