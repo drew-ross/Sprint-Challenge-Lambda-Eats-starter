@@ -13,8 +13,16 @@ Demonstrate your understanding of this week's concepts by answering the followin
 Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+
+    A: useRouteMatch is used to keep track of the url to create relative routing paths. This url can be used to render different parts of a SPA
+
 2. How would you explain form validation to someone who has never programmed before?
+
+    A: Form validation ensures that the user can't give the wrong type of information to a website, and to make sure that it meets certain requirements. For example, if a password were allowed to be 1 character long, it would be really easy to hack into a lot of accounts.
+
 3. In 1-2 sentences, define end to end testing.
+
+    A: End to end testing simulates users interacting with the webpage from start to finish. This type of testing makes sure that the application is functional and won't break in real-use circumstances.
 
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
 
@@ -24,10 +32,10 @@ You are expected to be able to answer all these questions. Your responses contri
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your project manager as collaborator on Github.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] CD into the project base directory.
+- [X] Create a forked copy of this project.
+- [X] Add your project manager as collaborator on Github.
+- [X] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [X] CD into the project base directory.
 - [ ] Download project dependencies by running `npm install`
 - [ ] Start up the app using `npm start`
 - [ ] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
